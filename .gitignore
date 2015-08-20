@@ -34,8 +34,6 @@ npm-debug.log
 *.sql
 *.tmp
 
-config
-
 *.DS_Store
 
 
