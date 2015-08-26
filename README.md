@@ -14,7 +14,7 @@
 In your locals.js add the config below to set different types of authentication:
 
 ```sh
-  auth: {
+  github: {
       version: "3.0.0", // API version
       debug: true, // console.log,
       token: { //via token (Personal acess token)
