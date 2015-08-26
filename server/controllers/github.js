@@ -8,6 +8,8 @@ module.exports = {
       var result = _.filter(res, function(n){
         return _.indexOf(res[0].name, req.params);
       });
+
+      res.locals.record = result;
     });
     return res.ok();
   }
