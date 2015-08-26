@@ -7,25 +7,23 @@ module.exports = function loadPlugin(projectPath, Plugin) {
 	var plugin = new Plugin(__dirname);
 
 	plugin.setConfigs({ 
-		config: {
-		    version: "3.0.0", // API version
-		    debug: true, // console.log,
-		    auth: { //type of authentication
-		        token: { //via token (Personal acess token)
-		            type: "token",
-		            token: "<TOKEN>" 
-		        },
-		        basic: { //via username and password (do not recommend)
-		            type: "basic",
-		            username: "<USERNAME>",
-		            password: "<PASSWORD>"
-		        },
-		        oauth: { //via oauth2
-		            type: "oauth",
-		            token: "<TOKEN>"
-		        }
-		    }
-		}
+	  /*auth: {
+	      version: "3.0.0", // API version
+	      debug: true, // console.log,
+	      token: { //via token (Personal acess token)
+	        type: "token",
+	        token: "<TOKEN>"
+	      },
+	      basic: { //via username and password (do not recommend)
+	        type: "basic",
+	        username: "<USERNAME>",
+	        password: "<PASSWORD>"
+	      },
+	      oauth: { //via oauth2
+	        type: "oauth",
+	        token: "<TOKEN>"
+	      }
+	  }*/
 	});
 
 	plugin.setRoutes({

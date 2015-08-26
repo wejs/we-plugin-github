@@ -9,6 +9,30 @@
 # Has support:
 - Get repositories from organizations
 
+
+### Conguration
+In your locals.js add the config below to set different types of authentication:
+
+```sh
+  auth: {
+      version: "3.0.0", // API version
+      debug: true, // console.log,
+      token: { //via token (Personal acess token)
+        type: "token",
+        token: "<TOKEN>"
+      },
+      basic: { //via username and password (do not recommend)
+        type: "basic",
+        username: "<USERNAME>",
+        password: "<PASSWORD>"
+      },
+      oauth: { //via oauth2
+        type: "oauth",
+        token: "<TOKEN>"
+      }
+  }  
+```
+
 ### How to test
 
 After clone and install npm packages:
