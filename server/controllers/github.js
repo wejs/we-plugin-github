@@ -1,13 +1,14 @@
-var github = require('../../lib/');
+var github = require('../../lib/'),
+    _ = require('lodash');
 
 module.exports = {
   getProjects: function(req, res) {
-    github.authenticate({type: "token", token: "1d49b24d32e9d25972d67d948c4ca68c5fea9b18"});
-
+    github.authenticate(req.we.config.auth.token);
     github.repos.getFromOrg({org: 'wejs'}, function(err, res) {
-      console.log(res);
+      var result = _.filter(res, function(n){
+        return _.indexOf(res[0].name, req.params);
+      });
     });
-
     return res.ok();
   }
 }
