@@ -1,5 +1,3 @@
-var github = require('../../lib/');
-
 module.exports = {
   getProjects: function(req, res) {
     github.authenticate(req.we.config.auth.token);
@@ -9,7 +7,7 @@ module.exports = {
       });
 
       res.locals.record = result;
-      return res.ok();
+      res.ok();
     });
   }
-}
+};
