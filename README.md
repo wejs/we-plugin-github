@@ -1,13 +1,21 @@
 # we-plugin-github
 
-> [write something about your plugin here]
+> Consuming GitHub API
 
-# API
+# Requirements in your we.js project
 
+- we-core
 
-## Links
+# Has support:
+- Get repositories from organizations
 
-> * We.js site: http://wejs.org
+### How to test
+
+After clone and install npm packages:
+
+```sh
+npm test
+```
 
 ## Copyright and license
 
