@@ -42,11 +42,8 @@
             matchedIndex = text.indexOf(value);
       }
       
-      if (matchedIndex != 0) {
-        $row.hide();
-      } else {
-        $row.show();
-      }
+      if (matchedIndex != 0) $row.hide();
+      else $row.show();
     });
   });
 </script>
