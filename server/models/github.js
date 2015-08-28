@@ -11,7 +11,7 @@ module.exports = function Model(we) {
       creatorId: { type: we.db.Sequelize.BIGINT, formFieldType: null},
       name: {type: we.db.Sequelize.STRING(1500)},
       description: {type: we.db.Sequelize.TEXT},
-      expireData: {type: we.db.Sequelize.DATE}
+      expireDate: {type: we.db.Sequelize.DATE}
     },
     options: {
       classMethods: {},
