@@ -10,6 +10,7 @@ module.exports = function Model(we) {
     definition: {
       name: {type: we.db.Sequelize.STRING(1500)},
       description: {type: we.db.Sequelize.TEXT},
+      url: {type: we.db.Sequelize.STRING},
       expireDate: {type: we.db.Sequelize.DATE}
     },
     options: {
