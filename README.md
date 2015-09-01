@@ -31,7 +31,7 @@ In your locals.js add the config below to set different types of authentication:
         token: "<TOKEN>"
       }
   },
-  expireDate: (60 * 60 * 60) // an hour,
+  expireDate: (60 * 60 * 60), // an hour
   orgName: 'wejs'  
 ```
 
