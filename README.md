@@ -30,7 +30,7 @@ npm test
   github: {
       version: "3.0.0", // API version
       debug: true, // console.log,
-      token: { //via token (Personal acess token)
+      token: { //via token (Personal access token)
         type: "token",
         token: "<TOKEN>"
       },
