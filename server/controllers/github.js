@@ -1,89 +1,86 @@
-var github = require('../../lib/'),
-    _      = require('lodash');
+var github = require('../../lib/');
 
 module.exports = {
   getProjects: function(req, res) {
-    //when don't have any data on Db
-    req.we.db.models.github.findAndCountAll({
-      where: {
-        name: {$like: '%' + req.params.name + '%'}
-      }
-    })
-    .then(function(data) {
-      if (data.count === 0) {
-        github.authenticate(req.we.config.github.token);
-        github.repos.getFromOrg({org: 'wejs'}, function(err, resGitApi) {
-          var result = resGitApi.filter(function(el) {
-            return el.name.indexOf(req.params.name) >= 0;
-          });
+    var we = req.we;
 
-          _.forEach(result, function(item, key){
-            req.we.db.models.github.create({
-              name: item.name,
-              description: item.description,
-              url: item.html_url,
-              expireDate: new Date(resGitApi.meta["x-ratelimit-reset"] * 1000)
-            })
-            .then(function() {
-              console.log('New item has been created on githubs table.');
-            })
-          });
-
-          res.locals.record = result;
-          res.ok();
+    we.utils.async.waterfall([
+      function(cb) {
+        we.db.models.github.findAll(res.locals.query)
+        .then(function(repositories){
+          cb(null, repositories);
         });
-      } else {
-        req.we.db.models.github.findAll({
-          where: {
-            name: {$like: '%' + req.params.name + '%'}
-          }
-        })
-        .then(function(data) {
-          var filterData = data.filter(function(el) {
-            return el.expireDate > new Date();
+      },
+      function(cache, cb) {
+        var filtered = cache.filter(function(el) {
+          return el.expireDate > new Date();
+        });
+
+        if (cache) cb(null, cache)
+        else cb(null, []);
+      }
+    ], function(err, cache) {
+      we.utils.async.waterfall([
+        function(cb) {
+          cb(github.authenticate(we.config.github.token));
+        },
+        function(cb) {
+          github.repos.getFromOrg({org: we.config.github.orgName}, function(err, res) {
+            var repositories = res.filter(function(item) {
+              return item.name.indexOf(req.params.name) >= 0;
+            });
+
+            cb(null, repositories);
           });
-
-          if (filterData.length > 0) {
-            github.authenticate(req.we.config.github.token);
-            github.repos.getFromOrg({org: 'wejs'}, function(err, resGitApi) {
-              var filterGitApi = resGitApi.filter(function(el) {
-                return el.name.indexOf(req.params.name) >= 0;
-              });
-
-              var result = filterData.filter(function(el) {
-                filterGitApi.forEach(function(item) {
-                  if (item.name !== el.name) return false;
-                });
-                return true;
+        },
+        function(repositories, cb) {
+          if (cache.length === 0) {
+            repositories.forEach(function(repo) {
+              we.db.models.github.create({
+                name: repo.name,
+                description: repo.description,
+                url: repo.html_url,
+                expireDate: new Date() + we.config.github.expireDate
               })
-              .map(function(item) {
-                return {
-                  id: item.id,
-                  name: item.name,
-                  description: item.description,
-                  url: item.url,
-                  expireDate: new Date(resGitApi.meta["x-ratelimit-reset"] * 1000)
-                };
+              .then(function() {
+                console.log('New item has been created on githubs table.');
               });
 
-              result.forEach(function(item) {
-                req.we.db.models.github.update(item, {
-                  where: {id: item.id}
-                })
-                .then(function() {
-                  console.log('New item has been updated on githubs table.');
-                });
-              });
-
-              res.locals.record = result;
-              res.ok();
+              cb(null, repositories);
             });
           } else {
-            res.locals.record = data;
-            res.ok();
+            var matchRepoToDb = cache.filter(function(item) {
+              repositories.forEach(function(repo) {
+                return item.name !== repo.name ? false : true
+              });
+              return true;
+            })
+            .map(function(item) {
+              return {
+                id: item.id,
+                name: item.name,
+                description: item.description,
+                url: item.url,
+                expireDate: new Date() + we.config.github.expireDate
+              };
+            });
+
+            matchRepoToDb.forEach(function(repo) {
+              we.db.models.github.update(repo, {
+                where: {id: repo.id}
+              })
+              .then(function() {
+                console.log('New item has been updated on githubs table.');
+              });
+
+              cb(null, matchRepoToDb);
+            });
           }
-        });
-      }
+        }
+      ], function(err, result) {
+        res.locals.record = result;
+        res.ok();
+      });
     });
   }
 };
