@@ -1,17 +1,30 @@
 # we-plugin-github
 
-> Consuming GitHub API
+> We.js plugin to consuming Github API
 
 # Requirements in your we.js project
 
 - we-core
 
 # Has support:
+
+- Authentication (Basic, Token, oAuth2)
 - Get repositories from organizations
 
+### How to Setup (developer)
+> after install npm and node.js
+```js
+// clone this project
+git clone https://github.com/wejs/we-plugin-github.git
+// enter in cloned folder
+cd we-plugin-github
+// install all dependencies
+npm install
+// test
+npm test
+```
 
-### Conguration
-In your locals.js add the config below to set different types of authentication:
+> Add a file ``` locals.js ``` and add the config below to set different types of authentication:
 
 ```sh
   github: {
@@ -32,7 +45,7 @@ In your locals.js add the config below to set different types of authentication:
       }
   },
   expireDate: (60 * 60 * 60), // an hour
-  orgName: 'wejs'  
+  orgName: 'wejs' //organization name
 ```
 
 ### How to test
@@ -46,5 +59,4 @@ npm test
 ## Copyright and license
 
 We.js Team
-
-Copyright 2013-2014 Leonan Luppi <leonan.luppi@gmail.com> and contributors , under [the MIT license](LICENSE).
+Copyright 2013-2014 Alberto Souza <contato@albertosouza.net> and contributors , under [the MIT license](LICENSE).
