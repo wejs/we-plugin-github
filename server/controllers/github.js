@@ -6,7 +6,9 @@ module.exports = {
 
     we.utils.async.waterfall([
       function(cb) {
-        we.db.models.github.findAll(res.locals.query)
+        we.db.models.github.findAll({
+          where: {name: {$like: '%' + req.params.name + '%'}}
+        })
         .then(function(repositories){
           cb(null, repositories);
         });
