@@ -59,4 +59,4 @@ npm test
 ## Copyright and license
 
 We.js Team
-Copyright 2013-2014 Alberto Souza <contato@albertosouza.net> and contributors , under [the MIT license](LICENSE).
+Copyright 2013-2014 Leonan Luppi <leonan.luppi@gmail.com> and contributors , under [the MIT license](LICENSE).
