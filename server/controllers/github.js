@@ -16,8 +16,7 @@ module.exports = {
           return el.expireDate > new Date();
         });
 
-        if (cache) cb(null, cache)
-        else cb(null, []);
+        cb(null, (cache || []));
       }
     ], function(err, cache) {
       we.utils.async.waterfall([
