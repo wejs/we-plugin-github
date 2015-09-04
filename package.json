@@ -20,11 +20,11 @@
     "mocha": "^2.2.5",
     "rimraf": "^2.3.4",
     "supertest": "^1.0.1",
-    "we-core": "^0.3.35",
-    "we-plugin-form": "^0.3.1",
-    "we-theme-admin-default": "^0.3.4",
-    "we-theme-site-wejs": "^0.3.13",
-    "we-test-tools": "^0.3.5"
+    "we-core": "^0.3.69",
+    "we-plugin-form": "^0.3.16",
+    "we-theme-admin-default": "^0.3.9",
+    "we-theme-site-wejs": "^0.3.15",
+    "we-test-tools": "^0.3.8"
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
