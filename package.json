@@ -1,7 +1,7 @@
 {
   "name": "we-plugin-github",
   "description": "We.js github plugin",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "homepage": "https://wejs.org",
   "repository": {
     "type": "git",
