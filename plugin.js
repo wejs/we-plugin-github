@@ -27,8 +27,7 @@ module.exports = function loadPlugin(projectPath, Plugin) {
         //  type: 'oauth',
         //  token: '<TOKEN>'
       },
-      expireDate: (60 * 60 * 60), // an hour
-      orgName: 'wejs' //organization name
+      expireDate: (60 * 60 * 60) // an hour
     }
   });
 
