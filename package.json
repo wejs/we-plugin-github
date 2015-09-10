@@ -14,9 +14,7 @@
     "prepublish": "npm prune"
   },
   "dependencies": {
-    "async": "^1.2.0",
-    "github": "^0.2.4",
-    "lodash": "^3.9.3"
+    "github": "^0.2.4"
   },
   "devDependencies": {
     "fs-extra": "^0.18.2",
@@ -25,11 +23,11 @@
     "mocha": "^2.2.5",
     "rimraf": "^2.3.4",
     "supertest": "^1.0.1",
-    "we-core": "^0.3.69",
+    "we-core": "wejs/we-core",
     "we-plugin-form": "^0.3.16",
     "we-theme-admin-default": "^0.3.9",
     "we-theme-site-wejs": "^0.3.15",
-    "we-test-tools": "^0.3.8"
+    "we-test-tools": "wejs/we-test-tools"
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"

@@ -1,1 +1,0 @@
-Plugin model folder, see: http://wejs.org/docs/we/features.models

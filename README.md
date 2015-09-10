@@ -1,6 +1,6 @@
-# we-plugin-github
+# We.js github plugin
 
-> We.js plugin to consuming Github API
+> We.js plugin to connect and consume github data with Github API
 
 # Requirements in your we.js project
 
@@ -9,10 +9,11 @@
 # Has support:
 
 - Authentication (Basic, Token, oAuth2)
-- Get repositories from organizations
+- add one authenticated instance of github npm module in ```we.github```
 
 ### How to Setup (developer)
 > after install npm and node.js
+
 ```js
 // clone this project
 git clone https://github.com/wejs/we-plugin-github.git
@@ -22,30 +23,41 @@ cd we-plugin-github
 npm install
 // test
 npm test
+
+// link
+npm link
+// enter in your project
+cd [project folder]
+// then link it in your project 
+npm link we-plugin-github
 ```
 
-> Add a file ``` locals.js ``` and add the config below to set different types of authentication:
+> add this config in you ```config/locals.js``` file and set the authentication configs
 
-```sh
+```js
+  // ...
   github: {
-      version: "3.0.0", // API version
-      debug: true, // console.log,
-      token: { //via token (Personal access token)
-        type: "token",
-        token: "<TOKEN>"
-      },
-      basic: { //via username and password (do not recommend)
-        type: "basic",
-        username: "<USERNAME>",
-        password: "<PASSWORD>"
-      },
-      oauth: { //via oauth2
-        type: "oauth",
-        token: "<TOKEN>"
-      }
+    debug: true, // enable logs
+    authentication: {
+      //
+      //  // Example authentication configs
+      //
+      //  //via token (Personal access token)
+      //  type: 'token',
+      //  token: '<token>'
+      //
+      //  // via username and password (do not recommend)
+      //  type: 'basic',
+      //  username: '<USERNAME>',
+      //  password: '<PASSWORD>'
+      //
+      //  //via oauth2
+      //  type: 'oauth',
+      //  token: '<TOKEN>'
+    },
+    expireDate: (60 * 60 * 60) // an hour
   },
-  expireDate: (60 * 60 * 60), // an hour
-  orgName: 'wejs' //organization name
+  // ...
 ```
 
 ### How to test
