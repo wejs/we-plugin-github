@@ -8,8 +8,6 @@
 
 module.exports = function githubCacheModel(we) {
   var model = {
-    // define you model here
-    // see http://docs.sequelizejs.com/en/latest/docs/models-definition
     definition: {
       name: {
         type: we.db.Sequelize.STRING,

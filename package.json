@@ -1,36 +1,21 @@
 {
   "name": "we-plugin-github",
   "description": "We.js github plugin",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "homepage": "https://wejs.org",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wejs/we-plugin-github.git"
-  },
-  "main": "lib/index.js",
+  "repository": "wejs/we-plugin-github",
+  "main": "plugin.js",
   "scripts": {
     "lint": "./node_modules/.bin/jshint .",
-    "test": "NODE_ENV=test LOG_LV=info ./node_modules/.bin/mocha test/bootstrap.js test/**/*.test.js",
-    "prepublish": "npm prune"
+    "test": "NODE_ENV=test LOG_LV=info ./node_modules/.bin/mocha test/bootstrap.js test/**/*.test.js"
   },
   "dependencies": {
     "github": "^0.2.4"
   },
-  "devDependencies": {
-    "fs-extra": "^0.18.2",
-    "istanbul": "^0.3.14",
-    "jshint": "^2.8.0",
-    "mocha": "^2.2.5",
-    "rimraf": "^2.3.4",
-    "supertest": "^1.0.1",
-    "we-core": "wejs/we-core",
-    "we-plugin-form": "^0.3.16",
-    "we-theme-admin-default": "^0.3.9",
-    "we-theme-site-wejs": "^0.3.15",
-    "we-test-tools": "wejs/we-test-tools"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npmjs.org"
-  },
-  "license": "MIT"
+  "author": "Leonan Luppi <leonan.luppi@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "wejs-plugin"
+  ],
+  "wejs": {}
 }

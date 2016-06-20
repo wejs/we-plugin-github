@@ -1,17 +1,20 @@
 # We.js github plugin
 
-> We.js plugin to connect and consume github data with Github API
+We.js plugin to connect and consume github data with Github API
 
-# Requirements in your we.js project
+## Installation
 
-- we-core
+```sh
+we i we-plugin-github
+```
 
-# Has support:
+## Has support:
 
 - Authentication (Basic, Token, oAuth2)
 - add one authenticated instance of github npm module in ```we.github```
 
 ### How to Setup (developer)
+
 > after install npm and node.js
 
 ```js
@@ -60,15 +63,6 @@ npm link we-plugin-github
   // ...
 ```
 
-### How to test
-
-After clone and install npm packages:
-
-```sh
-npm test
-```
-
 ## Copyright and license
 
-We.js Team
-Copyright 2013-2014 Leonan Luppi <leonan.luppi@gmail.com> and contributors , under [the MIT license](LICENSE).
+Copyright 2013-2016 Leonan Luppi <leonan.luppi@gmail.com> and contributors , under [the MIT license](LICENSE.md).
