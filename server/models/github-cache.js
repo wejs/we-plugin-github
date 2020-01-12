@@ -7,49 +7,25 @@
  */
 
 module.exports = function githubCacheModel(we) {
-  var model = {
+  const model = {
     definition: {
       name: {
-        type: we.db.Sequelize.STRING,
+        type: we.db.Sequelize.JSON,
         allowNull: false,
-        skipSanitizer: true,
-        get: function()  {
-          if (this.getDataValue('name'))
-            return JSON.parse( this.getDataValue('name') );
-          return {};
-        },
-        set: function(object) {
-          if (typeof object == 'object') {
-            this.setDataValue('name', JSON.stringify(object));
-          } else {
-            throw new Error('invalid error in githubCache name value: ', object);
-          }
-        }
+        skipSanitizer: true
       },
       response: {
-        type: we.db.Sequelize.TEXT('medium'),
+        type: we.db.Sequelize.JSON,
         allowNull: false,
-        skipSanitizer: true,
-        get: function()  {
-          if (this.getDataValue('response'))
-            return JSON.parse( this.getDataValue('response') );
-          return {};
-        },
-        set: function(object) {
-          if (typeof object == 'object') {
-            this.setDataValue('response', JSON.stringify(object));
-          } else {
-            throw new Error('invalid error in githubCache response value: ', object);
-          }
-        }
+        skipSanitizer: true
       },
       expires: {
         type: we.db.Sequelize.BIGINT
       }
     },
     options: {
-      // title field, for default title record pages
-      // titleField: 'title',
+      enableAlias: false,
+      tableName: 'github_caches',
 
       // Class methods for use with: we.db.models.[yourmodel].[method]
       classMethods: {},
@@ -58,9 +34,9 @@ module.exports = function githubCacheModel(we) {
       // Sequelize hooks
       // See http://docs.sequelizejs.com/en/latest/api/hooks
       hooks: {
-        beforeCreate: function(r, opts, done) {
+        beforeCreate(r) {
           r.expires = (new Date().getTime() + we.config.github.expireDate);
-          done();
+          return r;
         }
       }
     }

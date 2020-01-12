@@ -10,7 +10,7 @@
     "test": "NODE_ENV=test LOG_LV=info ./node_modules/.bin/mocha test/bootstrap.js test/**/*.test.js"
   },
   "dependencies": {
-    "github": "^0.2.4"
+    "@octokit/rest": "^16.36.0"
   },
   "author": "Leonan Luppi <leonan.luppi@gmail.com>",
   "license": "MIT",

@@ -4,30 +4,31 @@
  * see http://wejs.org/docs/we/extend.plugin
  */
 module.exports = function loadPlugin(projectPath, Plugin) {
-  var plugin = new Plugin(__dirname);
+  const plugin = new Plugin(__dirname);
+
+  const we = plugin.we;
 
   plugin.setConfigs({
-   github: {
+    github: {
       version: '3.0.0', // API version
       debug: true, // enable logs
-      authentication: {
-        //
-        //  // Example authentication configs
-        //
-        //  //via token (Personal access token)
-        //  type: 'token',
-        //  token: '<token>'
-        //
-        //  // via username and password (do not recommend)
-        //  type: 'basic',
-        //  username: '<USERNAME>',
-        //  password: '<PASSWORD>'
-        //
-        //  //via oauth2
-        //  type: 'oauth',
-        //  token: '<TOKEN>'
-      },
-      expireDate: (60 * 60 * 60) // an hour
+      // github API token
+      auth: null,
+      expireDate: (60 * 60 * 60),
+      log: {
+        debug: function() {
+          we.log.debug(...arguments);
+        },
+        info: function() {
+          we.log.info(...arguments);
+        },
+        warn: function() {
+          we.log.warn(...arguments);
+        },
+        error: function() {
+          we.log.error(...arguments);
+        }
+      }
     }
   });
 
@@ -35,8 +36,6 @@ module.exports = function loadPlugin(projectPath, Plugin) {
   plugin.events.on('we:after:load:plugins', function (we) {
     // init
     we.github = require('./lib')(we);
-    // authenticate
-    we.github.authenticate(we.config.github.authentication);
     // cache object
     we.github.cacheTimes = {};
   });
